@@ -22,7 +22,9 @@ const saveTemplate = `
 		</style>
 	</head>
 	<body>
+			<div class="cells">
 $content	
+			</div>
 	</body>
 </html>
 `;
@@ -56,11 +58,11 @@ function createCell(id, type, content) {
 	trash.addEventListener('mouseout', unsetActive);
 	
 	trash.addEventListener('click', function() {
-		if (this.parentNode.parentNode.previousSibling == null && this.parentNode.parentNode.nextSibling != null) {
+		if (this.parentNode.parentNode.previousSibling === null && this.parentNode.parentNode.nextSibling !== null) {
 			this.parentNode.parentNode.nextSibling.getElementsByClassName('codicon-arrow-up')[0].style.display = 'none';
 		}
 
-		if (this.parentNode.parentNode.nextSibling == null && this.parentNode.parentNode.previousSibling != null) {
+		if (this.parentNode.parentNode.nextSibling === null && this.parentNode.parentNode.previousSibling !== null) {
 			this.parentNode.parentNode.previousSibling.getElementsByClassName('codicon-arrow-down')[0].style.display = 'none';
 		}
 
@@ -91,16 +93,16 @@ function createCell(id, type, content) {
 	moveUp.addEventListener('mouseout', unsetActive);
 	
 	moveUp.addEventListener('click', function() {
-		if (this.parentNode.parentNode.previousSibling == null) {
+		if (this.parentNode.parentNode.previousSibling === null) {
 			return;
 		}
 
-		if (this.parentNode.parentNode.nextSibling == null) {
+		if (this.parentNode.parentNode.nextSibling === null) {
 			this.parentNode.parentNode.getElementsByClassName('codicon-arrow-down')[0].style.display = 'inherit';	
 			this.parentNode.parentNode.previousSibling.getElementsByClassName('codicon-arrow-down')[0].style.display = 'none';	
 		}
 
-		if (this.parentNode.parentNode.previousSibling.previousSibling == null) {
+		if (this.parentNode.parentNode.previousSibling.previousSibling === null) {
 			this.parentNode.parentNode.getElementsByClassName('codicon-arrow-up')[0].style.display = 'none';
 			this.parentNode.parentNode.previousSibling.getElementsByClassName('codicon-arrow-up')[0].style.display = 'inherit';
 		}
@@ -123,16 +125,16 @@ function createCell(id, type, content) {
 	moveDown.addEventListener('mouseout', unsetActive);
 	
 	moveDown.addEventListener('click', function() {
-		if (this.parentNode.parentNode.nextSibling == null) {
+		if (this.parentNode.parentNode.nextSibling === null) {
 			return;
 		}
 
-		if (this.parentNode.parentNode.nextSibling.nextSibling == null) {
+		if (this.parentNode.parentNode.nextSibling.nextSibling === null) {
 			this.parentNode.parentNode.nextSibling.getElementsByClassName('codicon-arrow-down')[0].style.display = 'inherit';	
 			this.parentNode.parentNode.getElementsByClassName('codicon-arrow-down')[0].style.display = 'none';	
 		}
 
-		if (this.parentNode.parentNode.previousSibling == null) {
+		if (this.parentNode.parentNode.previousSibling === null) {
 			this.parentNode.parentNode.nextSibling.getElementsByClassName('codicon-arrow-up')[0].style.display = 'none';
 			this.parentNode.parentNode.getElementsByClassName('codicon-arrow-up')[0].style.display = 'inherit';
 		}
@@ -179,11 +181,11 @@ function createCell(id, type, content) {
 	close.addEventListener('mouseout', unsetActive);
 	
 	close.addEventListener('click', function() {
-		if (this.parentNode.parentNode.previousSibling == null && this.parentNode.parentNode.nextSibling != null) {
+		if (this.parentNode.parentNode.previousSibling === null && this.parentNode.parentNode.nextSibling !== null) {
 			this.parentNode.parentNode.nextSibling.getElementsByClassName('codicon-arrow-up')[0].style.display = 'none';
 		}
 
-		if (this.parentNode.parentNode.nextSibling == null && this.parentNode.parentNode.previousSibling != null) {
+		if (this.parentNode.parentNode.nextSibling === null && this.parentNode.parentNode.previousSibling !== null) {
 			this.parentNode.parentNode.previousSibling.getElementsByClassName('codicon-arrow-down')[0].style.display = 'none';
 		}
 		document.getElementById('cells').removeChild(this.parentNode.parentNode);
@@ -196,7 +198,7 @@ function createCell(id, type, content) {
 	let container = document.createElement('div');
 	container.classList.add('content');
 
-	if (type == 'txt') {
+	if (type === 'txt') {
 		content = txtTemplate.replace('$content', content);
 	}
 	
@@ -216,7 +218,7 @@ function save(file) {
 	cells.childNodes.forEach(n => {
 		content += '<!-- Cell: ' + n.id + ' -->\n';
 		content += '<div class="cell">\n';
-		content += n.getElementsByClassName('content')[0].innerHTML + '\n'
+		content += n.getElementsByClassName('content')[0].innerHTML + '\n';
 		content += '</div>\n';
 	});
 

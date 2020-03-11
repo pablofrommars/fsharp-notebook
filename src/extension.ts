@@ -25,12 +25,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 		const uri = vscode.Uri.file(
-			path.join(vscode.workspace.rootPath, "Output")
+			path.join(vscode.workspace.rootPath, "Notebook")
 		);
 
 		await vscode.workspace.fs.createDirectory(uri).then(async () => {
 
-			let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/Output/*.{svg,html,md,txt}');
+			let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/Notebook/*.{svg,html,md,txt}');
 
 			fileSystemWatcher.onDidCreate(async (filePath) => {
 				if (NotebookPanel.currentPanel) {
@@ -64,7 +64,7 @@ class NotebookPanel {
 
 		const panel = vscode.window.createWebviewPanel(
 			NotebookPanel.viewType,
-			'Output',
+			'Notebook',
 			column || vscode.ViewColumn.One,
 			{
 				enableScripts: true,
@@ -94,7 +94,7 @@ class NotebookPanel {
 
 						if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 							const uri = vscode.Uri.file(
-								path.join(vscode.workspace.rootPath, 'Output', message.id)
+								path.join(vscode.workspace.rootPath, 'Notebook', message.id)
 							);
 							
 							await vscode.workspace.fs.delete(uri);
@@ -189,7 +189,7 @@ class NotebookPanel {
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link rel="stylesheet" type="text/css" href="${codicon}" />
 			<link rel="stylesheet" type="text/css" href="${style}" />
-			<title>Output Panel</title>
+			<title>Notebook</title>
 		</head>
 		<body>
 			<div id="cells"></div>
@@ -199,7 +199,7 @@ class NotebookPanel {
 	}
 
 	public async Save() {
-		await vscode.window.showInputBox({ prompt: 'Save Output Panel', value: 'notebook.html' }).then(async fn => {
+		await vscode.window.showInputBox({ prompt: 'Save Notebook', value: 'notebook.html' }).then(async fn => {
 			if (!isNullOrUndefined(fn)) {
 				await this._panel.webview.postMessage({ 
 					command: 'save', 
