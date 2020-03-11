@@ -1,0 +1,33 @@
+body {
+	font-size: 16px;
+}
+
+.cell:not(:last-child) {
+	margin-bottom: 12px;
+}
+
+.cell.collapse > .content {
+	display: none;
+}
+
+	.cell .toolbar {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+		.cell .toolbar .item {
+			cursor: pointer;
+		}
+
+		.cell .toolbar .item:not(:last-child) {
+			margin-right: 12px;
+		}
+
+		.cell .toolbar .item.active {
+			transform: scale(1.27);
+		}
+
+.cell .txt {
+	border: 1px solid var(--vscode-editorLineNumber-foreground);
+	padding: 0.5em;
+}
