@@ -2,41 +2,51 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import { isNullOrUndefined, TextEncoder } from 'util';
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-		vscode.commands.registerCommand('outputPanel.open', () => {
-			OutputPanel.createOrShow(context.extensionPath);
+		vscode.commands.registerCommand('notebookPanel.open', () => {
+			NotebookPanel.createOrShow(context.extensionPath);
 		})
 	);
 
-	vscode.commands.registerCommand('outputPanel.save', async () => {
-		if (OutputPanel.currentPanel) {
-			await OutputPanel.currentPanel.Save();
+	vscode.commands.registerCommand('notebookPanel.save', async () => {
+		if (NotebookPanel.currentPanel) {
+			await NotebookPanel.currentPanel.Save();
 		}
 	});
 
 	if (vscode.window.registerWebviewPanelSerializer) {
-		vscode.window.registerWebviewPanelSerializer(OutputPanel.viewType, {
+		vscode.window.registerWebviewPanelSerializer(NotebookPanel.viewType, {
 			async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-				OutputPanel.revive(webviewPanel, context.extensionPath);
+				NotebookPanel.revive(webviewPanel, context.extensionPath);
 			}
 		});
 	}
 
-	let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/Output/*.{svg,html,md,txt}');
-	fileSystemWatcher.onDidCreate(async (filePath) => {
-		if (OutputPanel.currentPanel) {
-			await OutputPanel.currentPanel.Watch(filePath);
-		}
-	});
+	if (!isNullOrUndefined(vscode.workspace.rootPath)) {
+		const uri = vscode.Uri.file(
+			path.join(vscode.workspace.rootPath, "Output")
+		);
 
-	context.subscriptions.push(fileSystemWatcher);
+		await vscode.workspace.fs.createDirectory(uri).then(async () => {
+
+			let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/Output/*.{svg,html,md,txt}');
+
+			fileSystemWatcher.onDidCreate(async (filePath) => {
+				if (NotebookPanel.currentPanel) {
+					await NotebookPanel.currentPanel.Watch(filePath);
+				}
+			});
+
+			context.subscriptions.push(fileSystemWatcher);
+		});
+	}
 }
 
-class OutputPanel {
-	public static currentPanel: OutputPanel | undefined;
+class NotebookPanel {
+	public static currentPanel: NotebookPanel | undefined;
 
-	public static readonly viewType = 'outputPanel';
+	public static readonly viewType = 'notebookPanel';
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionPath: string;
@@ -47,13 +57,13 @@ class OutputPanel {
 			? vscode.window.activeTextEditor.viewColumn
 			: undefined;
 
-		if (OutputPanel.currentPanel) {
-			OutputPanel.currentPanel._panel.reveal(column);
+		if (NotebookPanel.currentPanel) {
+			NotebookPanel.currentPanel._panel.reveal(column);
 			return;
 		}
 
 		const panel = vscode.window.createWebviewPanel(
-			OutputPanel.viewType,
+			NotebookPanel.viewType,
 			'Output',
 			column || vscode.ViewColumn.One,
 			{
@@ -62,11 +72,11 @@ class OutputPanel {
 			}
 		);
 
-		OutputPanel.currentPanel = new OutputPanel(panel, extensionPath);
+		NotebookPanel.currentPanel = new NotebookPanel(panel, extensionPath);
 	}
 
 	public static revive(panel: vscode.WebviewPanel, extensionPath: string) {
-		OutputPanel.currentPanel = new OutputPanel(panel, extensionPath);
+		NotebookPanel.currentPanel = new NotebookPanel(panel, extensionPath);
 	}
 
 	private constructor(panel: vscode.WebviewPanel, extensionPath: string) {
@@ -200,7 +210,7 @@ class OutputPanel {
 	}
 
 	public dispose() {
-		OutputPanel.currentPanel = undefined;
+		NotebookPanel.currentPanel = undefined;
 
 		this._panel.dispose();
 

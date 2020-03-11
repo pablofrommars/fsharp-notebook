@@ -20,12 +20,12 @@
 		"onWebviewPanel:notebookPanel"
 	],
 	"bugs": {
-		"url": "https://github.com/ionide/ionide-vscode-fsharp/issues"
+		"url": "https://github.com/pablofrommars/fsharp-notebook/issues"
 	},
 	"homepage": "https://pablofrommars.github.io/",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ionide/ionide-vscode-fsharp.git"
+		"url": "https://github.com/pablofrommars/fsharp-notebook.git"
 	},
 	"main": "./out/extension.js",
 	"contributes": {
