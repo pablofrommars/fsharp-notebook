@@ -65,7 +65,10 @@ class NotebookPanel {
 		const panel = vscode.window.createWebviewPanel(
 			NotebookPanel.viewType,
 			'Notebook',
-			column || vscode.ViewColumn.One,
+			{ 
+				preserveFocus: true, 
+				viewColumn: vscode.ViewColumn.Beside
+			},
 			{
 				enableScripts: true,
 				localResourceRoots: [vscode.Uri.file(path.join(extensionPath, 'media'))]

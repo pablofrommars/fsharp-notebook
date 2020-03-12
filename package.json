@@ -2,7 +2,8 @@
 	"name": "fsharp-notebook",
 	"displayName": "fsharp-notebook",
 	"description": "Data Science Notebook for F# interactive",
-	"version": "0.0.1",
+	"publisher": "PabloBelin",
+	"version": "1.0.0",
 	"license": "MIT",
 	"author": { 
 		"name": "Pablo Belin",
