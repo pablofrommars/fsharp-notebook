@@ -10,15 +10,7 @@ const saveTemplate = `
 		<meta name="viewport" content="width=device-width" />
 		<title>Notebook</title>
 		<style>
-			:root {
-				--vscode-editor-background: #FFFFFF;
-				--vscode-editor-foreground: #2b2b2b;
-				--vscode-editorLineNumber-foreground: #cccccc;
-			  }
-
-			.cell {
-				width: 720px;
-			}
+$style
 		</style>
 	</head>
 	<body>

@@ -1,0 +1,9 @@
+:root {
+    --vscode-editor-background: #FFFFFF;
+    --vscode-editor-foreground: #2b2b2b;
+    --vscode-editorLineNumber-foreground: #cccccc;
+  }
+
+.cell {
+    width: 720px;
+}

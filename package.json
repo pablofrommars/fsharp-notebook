@@ -30,6 +30,16 @@
 	},
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "FSharpNotebook",
+			"properties": {
+			  "fsharpnotebook.css": {
+				"type": "string",
+				"default": "",
+				"description": "Specifies the path to your custom css style used for saving panel"
+			  }
+			}
+		},
 		"commands": [
 			{
 				"command": "notebookPanel.open",

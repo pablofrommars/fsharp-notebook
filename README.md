@@ -1,6 +1,6 @@
 # fsharp-notebook README
 
-fsharp-notebook is a lightweight visualization tool to assist during data exploration and your analysis workflow.
+fsharp-notebook is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
 
 ![demo](demo.gif)
 
@@ -11,7 +11,11 @@ fsharp-notebook is a lightweight visualization tool to assist during data explor
 * Save HTML Notebooks
 
 
-## Commands
+## Command Palette
 
-* F# Notebook: Open Panel
-* F# Notebook: Save Panel
+* **F# Notebook: Open Panel**
+* **F# Notebook: Save Panel**
+
+## Settings
+
+* **fsharpnotebook.css**: Specifies the path to your custom css style used for saving panel (Optional)

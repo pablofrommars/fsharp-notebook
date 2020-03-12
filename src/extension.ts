@@ -23,6 +23,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		});
 	}
 
+
 	if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 		const uri = vscode.Uri.file(
 			path.join(vscode.workspace.rootPath, "Notebook")
@@ -108,11 +109,28 @@ class NotebookPanel {
 					case 'save':
 
 						if (!isNullOrUndefined(vscode.workspace.rootPath)) {
+
+							let cssUri : vscode.Uri;
+
+							const css = vscode.workspace.getConfiguration('fsharpnotebook').get('css') as string;
+							if (css.length > 0) {
+								cssUri = vscode.Uri.file(css);
+							}
+							else {
+								cssUri = vscode.Uri.file(
+									path.join(this._extensionPath, 'media', 'css', 'save.css')
+								);
+							}
+
+							const style = (await vscode.workspace.fs.readFile(cssUri)).toString();
+
+							const content = (message.content as string).replace('$style', style);
+
 							const uri = vscode.Uri.file(
 								path.join(vscode.workspace.rootPath, message.file)
 							);
 
-							await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(message.content as string));
+							await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode(content));
 						}
 
 						return;
