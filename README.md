@@ -1,6 +1,6 @@
-# fsharp-notebook README
+# fsharp-notebook
 
-fsharp-notebook is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
+[fsharp-notebook](https://marketplace.visualstudio.com/items?itemName=PabloBelin.fsharp-notebook) is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
 
 ![demo](demo.gif)
 
@@ -25,7 +25,7 @@ fsharp-notebook is a lightweight visualization tool to assist during data explor
 Locate where fsharp-notebook extension is installed:
 * **Windows** ```%USERPROFILE%\.vscode\extensions```
 * **macOS** ```~/.vscode/extensions```
-* **Linux** ~/.vscode/extensions
+* **Linux** ```~/.vscode/extensions```
 
 And edit VSCode ```settings.json```:
 
