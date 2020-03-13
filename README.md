@@ -6,9 +6,9 @@ fsharp-notebook is a lightweight visualization tool to assist during data explor
 
 ## Features
 
-* Register "rich output" printers to FSI (i.e. fsi.addPrinter)
-* Render [SVG plots](https://pablofrommars.github.io), HTML fragments, Markdown, text...
-* Save HTML Notebooks
+* Register "rich output" printers to FSI
+* Render [SVG plots](https://pablofrommars.github.io), HTML fragments, Markdown and text cells
+* Export Notebooks to HTML
 
 
 ## Command Palette
@@ -18,4 +18,39 @@ fsharp-notebook is a lightweight visualization tool to assist during data explor
 
 ## Settings
 
-* **fsharpnotebook.css**: Specifies the path to your custom css style used for saving panel (Optional)
+**fsharpnotebook.css**: Specifies the path to your custom css style used for saving panel (Optional)
+
+## Configure [Ionide-fsharp](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
+
+Locate where fsharp-notebook extension is installed:
+* **Windows** ```%USERPROFILE%\.vscode\extensions```
+* **macOS** ```~/.vscode/extensions```
+* **Linux** ~/.vscode/extensions
+
+And edit VSCode ```settings.json```:
+
+```json
+"FSharp.fsiExtraParameters": ["--load:path/to/extension/scripts/Notebook.fsx"]
+```
+
+## Usage
+
+### Basic Example
+
+```fsharp
+open Notebook
+
+let md = Markdown """
+# Hello, Markdown!
+"""
+```
+
+### Custom printers
+
+```fsharp
+fsi.AddPrinter(fun (data : YourType) ->
+    ... // Format to string
+    |> SVG // or HTML or Markdown or Text
+    |> printerNotebook
+)
+```

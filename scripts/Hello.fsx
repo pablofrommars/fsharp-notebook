@@ -1,5 +1,5 @@
 open Notebook
 
-let md = Markdown ("""
+let md = Markdown """
 # Hello, Markdown!
-""")
+"""
