@@ -15,7 +15,10 @@
    viewBox="0 0 303.278 480.459"
    id="svg3745"
    sodipodi:docname="logo.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="C:\Users\pablo\source\repos\F#\fsharp-notebook\media\img\logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <metadata
      id="metadata3751">
     <rdf:RDF>
@@ -24,14 +27,14 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs3749" />
   <sodipodi:namedview
-     pagecolor="#ffffff"
+     pagecolor="transparent"
      bordercolor="#666666"
      borderopacity="1"
      objecttolerance="10"
@@ -44,12 +47,13 @@
      id="namedview3747"
      showgrid="false"
      inkscape:zoom="1.6817251"
-     inkscape:cx="46.092628"
+     inkscape:cx="-126.05203"
      inkscape:cy="111.71208"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="Layer_2">
+     inkscape:current-layer="Layer_2"
+     inkscape:pagecheckerboard="true">
     <inkscape:grid
        type="xygrid"
        id="grid3955" />

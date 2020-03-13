@@ -3,13 +3,14 @@
 	"displayName": "fsharp-notebook",
 	"description": "Data Science Notebook for F# interactive",
 	"publisher": "PabloBelin",
-	"version": "1.0.2",
+	"version": "1.0.0",
 	"license": "MIT",
 	"author": { 
 		"name": "Pablo Belin",
 		"email": "pablo.belin@gmail.com"
 	},
-	"logo": "media/img/logo.png",
+	"icon": "media/img/logo.png",
+	"markdown": "github",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
