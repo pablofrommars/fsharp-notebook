@@ -18,8 +18,8 @@
 
 ## Settings
 
-**fsharpnotebook.styles**: A list of CSS style sheets to use in notebooks.
-**fsharpnotebook.exportStyles**: A list of CSS style sheets to use when exporting notebooks.
+* **fsharpnotebook.styles**: A list of CSS style sheets to use in notebooks.
+* **fsharpnotebook.exportStyles**: A list of CSS style sheets to use when exporting notebooks.
 
 
 ## Configure [Ionide-fsharp](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
