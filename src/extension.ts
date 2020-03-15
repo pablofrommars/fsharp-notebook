@@ -15,6 +15,12 @@ export async function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	vscode.commands.registerCommand('notebookPanel.clear', async () => {
+		if (NotebookPanel.currentPanel) {
+			await NotebookPanel.currentPanel.Clear();
+		}
+	});
+
 	if (vscode.window.registerWebviewPanelSerializer) {
 		vscode.window.registerWebviewPanelSerializer(NotebookPanel.viewType, {
 			async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
@@ -258,6 +264,12 @@ class NotebookPanel {
 					file: fn
 				});
 			}
+		});
+	}
+
+	public async Clear() {
+		await this._panel.webview.postMessage({ 
+			command: 'clear'
 		});
 	}
 

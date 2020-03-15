@@ -221,6 +221,15 @@ function Export(file) {
 	});
 }
 
+function Clear() {
+
+	const cells = document.getElementById('cells');
+
+	while (cells.firstChild) {
+		cells.removeChild(cells.lastChild);
+	}
+}
+
 (function()
 {
 	window.addEventListener('message', event => {
@@ -231,6 +240,9 @@ function Export(file) {
 				return;
 			case 'export':
 				Export(message.file);
+				return;
+			case 'clear':
+				Clear();
 				return;
 		}
     });

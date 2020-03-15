@@ -15,6 +15,7 @@
 
 * **F# Notebook: Open Panel**
 * **F# Notebook: Export Panel**
+* **F# Notebook: Clear Panel**
 
 ## Settings
 

@@ -3,7 +3,7 @@
 	"displayName": "fsharp-notebook",
 	"description": "Data Science Notebook for F# interactive",
 	"publisher": "PabloBelin",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "MIT",
 	"author": { 
 		"name": "Pablo Belin",
@@ -26,7 +26,8 @@
 	],
 	"activationEvents": [
 		"onCommand:notebookPanel.open",
-		"onCommand:notebookPanel.save",
+		"onCommand:notebookPanel.export",
+		"onCommand:notebookPanel.clear",
 		"onWebviewPanel:notebookPanel"
 	],
 	"bugs": {
@@ -69,6 +70,11 @@
 			{
 				"command": "notebookPanel.export",
 				"title": "Export Panel",
+				"category": "F# Notebook"
+			},
+			{
+				"command": "notebookPanel.clear",
+				"title": "Clear Panel",
 				"category": "F# Notebook"
 			}
 		]
