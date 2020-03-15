@@ -3,7 +3,7 @@
 	"displayName": "fsharp-notebook",
 	"description": "Data Science Notebook for F# interactive",
 	"publisher": "PabloBelin",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"author": { 
 		"name": "Pablo Belin",
@@ -42,10 +42,21 @@
 		"configuration": {
 			"title": "FSharpNotebook",
 			"properties": {
-			  "fsharpnotebook.css": {
-				"type": "string",
-				"default": "",
-				"description": "Specifies the path to your custom css style used for saving panel"
+			  "fsharpnotebook.styles": {
+				"type": "array",
+				"items": {
+					"type": "string"
+				},
+				"default": [],
+				"description": "A list of CSS style sheets to use in notebooks"
+			  },
+			  "fsharpnotebook.exportStyles": {
+				"type": "array",
+				"items": {
+					"type": "string"
+				},
+				"default": [],
+				"description": "A list of CSS style sheets to use when exporting notebooks"
 			  }
 			}
 		},
@@ -56,8 +67,8 @@
 				"category": "F# Notebook"
 			},
 			{
-				"command": "notebookPanel.save",
-				"title": "Save Panel",
+				"command": "notebookPanel.export",
+				"title": "Export Panel",
 				"category": "F# Notebook"
 			}
 		]

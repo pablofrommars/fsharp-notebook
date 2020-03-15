@@ -9,9 +9,9 @@ export async function activate(context: vscode.ExtensionContext) {
 		})
 	);
 
-	vscode.commands.registerCommand('notebookPanel.save', async () => {
+	vscode.commands.registerCommand('notebookPanel.export', async () => {
 		if (NotebookPanel.currentPanel) {
-			await NotebookPanel.currentPanel.Save();
+			await NotebookPanel.currentPanel.Export();
 		}
 	});
 
@@ -22,7 +22,6 @@ export async function activate(context: vscode.ExtensionContext) {
 			}
 		});
 	}
-
 
 	if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 		const uri = vscode.Uri.file(
@@ -72,7 +71,10 @@ class NotebookPanel {
 			},
 			{
 				enableScripts: true,
-				localResourceRoots: [vscode.Uri.file(path.join(extensionPath, 'media'))]
+				localResourceRoots: [
+					vscode.Uri.file(path.join(vscode.env.appRoot, 'extensions', 'markdown-language-features')),
+					vscode.Uri.file(path.join(extensionPath, 'media'))
+				]
 			}
 		);
 
@@ -106,25 +108,27 @@ class NotebookPanel {
 
 						return;
 
-					case 'save':
+					case 'export':
 
 						if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 
-							let cssUri : vscode.Uri;
+							const styles : string[] = [];
 
-							const css = vscode.workspace.getConfiguration('fsharpnotebook').get('css') as string;
-							if (css.length > 0) {
-								cssUri = vscode.Uri.file(css);
+							const exportStyles = vscode.workspace.getConfiguration('fsharpnotebook').get<string[]>('exportStyles', []);
+							if (exportStyles.length > 0) {
+								for (const sheet of exportStyles) {
+									styles.push((await vscode.workspace.fs.readFile(vscode.Uri.file(sheet))).toString());
+								}
 							}
 							else {
-								cssUri = vscode.Uri.file(
-									path.join(this._extensionPath, 'media', 'css', 'save.css')
+								const sheet = vscode.Uri.file(
+									path.join(this._extensionPath, 'media', 'css', 'export.css')
 								);
+
+								styles.push((await vscode.workspace.fs.readFile(sheet)).toString());
 							}
 
-							const style = (await vscode.workspace.fs.readFile(cssUri)).toString();
-
-							const content = (message.content as string).replace('$style', style);
+							const content = (message.content as string).replace('$style', styles.join('\n'));
 
 							const uri = vscode.Uri.file(
 								path.join(vscode.workspace.rootPath, message.file)
@@ -191,13 +195,41 @@ class NotebookPanel {
 
 		const webview = this._panel.webview;
 
+		const previewStyles = vscode.extensions
+			.getExtension('vscode.markdown-language-features')
+			?.packageJSON['contributes']['markdown.previewStyles'];
+
+		const styles : string[] = [];
+
+		for (const sheet of previewStyles) {
+
+			const uri = this._panel.webview.asWebviewUri(vscode.Uri.file(
+				path.join(vscode.env.appRoot, 'extensions', 'markdown-language-features', sheet)
+			));
+
+			styles.push(`<link rel="stylesheet" type="text/css" href="${uri}">`);
+		}
+
 		const codicon = webview.asWebviewUri(vscode.Uri.file(
 			path.join(this._extensionPath, 'media', 'css', 'codicon', 'codicon.css')
 		));
 
-		const style = webview.asWebviewUri(vscode.Uri.file(
-			path.join(this._extensionPath, 'media', 'css', 'main.css')
-		));
+		styles.push(`<link rel="stylesheet" type="text/css" href="${codicon}">`);
+
+		const customStyles = vscode.workspace.getConfiguration('fsharpnotebook').get<string[]>('styles', []);
+		if (customStyles.length > 0) {
+			for (const sheet of customStyles) {
+				const uri = webview.asWebviewUri(vscode.Uri.file(sheet));
+				styles.push(`<link rel="stylesheet" type="text/css" href="${uri}">`);
+			}
+		}
+		else {
+			const main = webview.asWebviewUri(vscode.Uri.file(
+				path.join(this._extensionPath, 'media', 'css', 'main.css')
+			));
+
+			styles.push(`<link rel="stylesheet" type="text/css" href="${main}">`);
+		}
 
 		const script = webview.asWebviewUri(vscode.Uri.file(
 			path.join(this._extensionPath, 'media', 'js', 'main.js')
@@ -208,8 +240,7 @@ class NotebookPanel {
 		<head>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" type="text/css" href="${codicon}" />
-			<link rel="stylesheet" type="text/css" href="${style}" />
+			${styles.join('\n')}
 			<title>Notebook</title>
 		</head>
 		<body>
@@ -219,11 +250,11 @@ class NotebookPanel {
 		</html>`;
 	}
 
-	public async Save() {
-		await vscode.window.showInputBox({ prompt: 'Save Notebook', value: 'notebook.html' }).then(async fn => {
+	public async Export() {
+		await vscode.window.showInputBox({ prompt: 'Export Notebook', value: 'notebook.html' }).then(async fn => {
 			if (!isNullOrUndefined(fn)) {
 				await this._panel.webview.postMessage({ 
-					command: 'save', 
+					command: 'export', 
 					file: fn
 				});
 			}

@@ -14,18 +14,20 @@
 ## Command Palette
 
 * **F# Notebook: Open Panel**
-* **F# Notebook: Save Panel**
+* **F# Notebook: Export Panel**
 
 ## Settings
 
-**fsharpnotebook.css**: Specifies the path to your custom css style used for saving panel (Optional)
+**fsharpnotebook.styles**: A list of CSS style sheets to use in notebooks.
+**fsharpnotebook.exportStyles**: A list of CSS style sheets to use when exporting notebooks.
+
 
 ## Configure [Ionide-fsharp](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
 
 Locate where fsharp-notebook extension is installed:
-* **Windows** ```%USERPROFILE%\.vscode\extensions```
-* **macOS** ```~/.vscode/extensions```
-* **Linux** ```~/.vscode/extensions```
+* **Windows** ```%USERPROFILE%\.vscode\extensions\pablobelin.fsharp-notebook-*```
+* **macOS** ```~/.vscode/extensions/pablobelin.fsharp-notebook-*```
+* **Linux** ```~/.vscode/extensions/pablobelin.fsharp-notebook-*```
 
 And edit VSCode ```settings.json```:
 

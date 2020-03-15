@@ -2,7 +2,7 @@ const vscode = acquireVsCodeApi();
 
 const txtTemplate = '<pre class="txt">$content</pre>';
 
-const saveTemplate = `
+const exportTemplate = `
 <!DOCTYPE html>
 <html>
 	<head>
@@ -201,7 +201,7 @@ function createCell(id, type, content) {
 	cells.appendChild(cell);
 }
 
-function save(file) {
+function Export(file) {
 
 	const cells = document.getElementById('cells');
 
@@ -215,9 +215,9 @@ function save(file) {
 	});
 
 	vscode.postMessage({
-		command: 'save',
+		command: 'export',
 		file: file,
-		content: saveTemplate.replace('$content', content)
+		content: exportTemplate.replace('$content', content)
 	});
 }
 
@@ -229,8 +229,8 @@ function save(file) {
 			case 'append':
 				createCell(message.id, message.type, message.content);
 				return;
-			case 'save':
-				save(message.file);
+			case 'export':
+				Export(message.file);
 				return;
 		}
     });
