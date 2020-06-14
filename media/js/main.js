@@ -29,6 +29,16 @@ function unsetActive() {
 	this.classList.remove('active');
 }
 
+function extractScriptTags(content) {
+	console.log('Extracting <script> tags')
+	let parsed = $('<div/>').append(content);
+	let scriptTags = $('script', parsed);
+	for (let t of scriptTags) {
+		t.remove();
+	}
+	return [scriptTags, parsed.html()];
+}
+
 function createCell(id, type, content) {
 	let cells = document.getElementById('cells');
 
@@ -193,12 +203,18 @@ function createCell(id, type, content) {
 	if (type === 'txt') {
 		content = txtTemplate.replace('$content', content);
 	}
-	
-	container.innerHTML = content;
-	
+
+	let [scriptTags, contentWithoutScripts] = extractScriptTags(content);
+	container.innerHTML = contentWithoutScripts; // add first the html DOM
+
 	cell.appendChild(container);
-	
+
 	cells.appendChild(cell);
+
+	// and only then add the scripts
+	for (let t of scriptTags) {
+		$(t).appendTo('head');
+	}
 }
 
 function Export(file) {
