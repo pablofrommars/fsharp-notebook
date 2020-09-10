@@ -1,6 +1,6 @@
-# fsharp-notebook
+# fsharp-interactive-datascience
 
-[fsharp-notebook](https://marketplace.visualstudio.com/items?itemName=PabloBelin.fsharp-notebook) is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
+[fsharp-interactive-datascience](https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience) is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
 
 ![demo](demo.gif)
 

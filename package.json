@@ -32,12 +32,12 @@
 		"onWebviewPanel:notebookPanel"
 	],
 	"bugs": {
-		"url": "https://github.com/andriniaina/fsharp-notebook/issues"
+		"url": "https://github.com/andriniaina/fsharp-interactive-datascience/issues"
 	},
-	"homepage": "https://github.com/andriniaina/fsharp-notebook",
+	"homepage": "https://github.com/andriniaina/fsharp-interactive-datascience",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/andriniaina/fsharp-notebook.git"
+		"url": "https://github.com/andriniaina/fsharp-interactive-datascience.git"
 	},
 	"main": "./out/extension.js",
 	"contributes": {
