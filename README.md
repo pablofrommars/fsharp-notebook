@@ -4,18 +4,18 @@
 
 ![demo](demo.gif)
 
-## Features
+## Built-in features
 
 * Register "rich output" printers to FSI
-* Render [SVG plots](https://pablofrommars.github.io), HTML fragments, Markdown and text cells
+* Render plotly charts, [SVG plots](https://pablofrommars.github.io), HTML fragments, Markdown and text cells
 * Export Notebooks to HTML
 
 
 ## Command Palette
 
-* **F# Notebook: Open Panel**
-* **F# Notebook: Export Panel**
-* **F# Notebook: Clear Panel**
+* **F# Notebook+DataScience: Open Panel**
+* **F# Notebook+DataScience: Export Panel**
+* **F# Notebook+DataScience: Clear Panel**
 
 ## Settings
 
@@ -24,6 +24,7 @@
 
 
 ## Configure [Ionide-fsharp](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
+Install F# 5: https://dotnet.microsoft.com/download/dotnet/5.0
 
 Locate where fsharp-interactive-datascience extension is installed:
 * **Windows** ```%USERPROFILE%\.vscode\extensions\pablobelin.fsharp-interactive-datascience-*```
@@ -33,20 +34,43 @@ Locate where fsharp-interactive-datascience extension is installed:
 And edit VSCode ```settings.json```:
 
 ```json
-"FSharp.fsiExtraParameters": ["--load:path/to/extension/scripts/Notebook.fsx"]
+{
+    "FSharp.fsiExtraParameters": [
+        "--langversion:preview",
+        "--load:path/to/extension/scripts/Notebook.fsx"
+    ]
+}
 ```
 
 ## Usage
 
-### Basic Example
+### Examples
 
 ```fsharp
 // Ctrl+Alt+P : F# Notebook: Open Panel
-open Notebook
-
-let md = Markdown """
+// display markdown
+Notebook.Markdown """
 # Hello, Markdown!
 """
+
+// display primitive values
+Notebook.Text (1+1)
+
+// display plotly chart
+open XPlot.Plotly
+open FSharp.Data
+let marginWidth = 50.0
+let margin = Margin(l = marginWidth, r = marginWidth, t = marginWidth, b = marginWidth)
+type AlcoholConsumption = CsvProvider<"https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv">
+let consumption = AlcoholConsumption.Load("https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv")
+let locations = consumption.Rows |> Seq.map (fun r -> r.Location)
+let z = consumption.Rows |> Seq.map (fun r -> r.Alcohol)
+
+let map =
+    Chart.Plot([ Choropleth(locations = locations, locationmode = "country names", z = z, autocolorscale = true) ])
+    |> Chart.WithLayout(Layout(title = "Alcohol consumption", width = 700.0, margin = margin, geo = Geo(projection = Projection(``type`` = "mercator"))))
+
+Notebook.Plotly map
 ```
 
 ### Custom printers
