@@ -31,12 +31,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	if (!isNullOrUndefined(vscode.workspace.rootPath)) {
 		const uri = vscode.Uri.file(
-			path.join(vscode.workspace.rootPath, "Notebook")
+			path.join(vscode.workspace.rootPath, "cache/notebook")
 		);
 
 		await vscode.workspace.fs.createDirectory(uri).then(async () => {
 
-			let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/Notebook/*.{svg,html,md,txt}');
+			let fileSystemWatcher = vscode.workspace.createFileSystemWatcher('**/cache/notebook/*.{svg,html,md,txt}');
 
 			fileSystemWatcher.onDidCreate(async (filePath) => {
 				if (NotebookPanel.currentPanel) {
@@ -248,6 +248,7 @@ class NotebookPanel {
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			${styles.join('\n')}
 			<title>Notebook</title>
+			<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 			<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		</head>
 		<body>

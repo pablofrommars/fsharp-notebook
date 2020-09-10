@@ -253,6 +253,7 @@ function Clear() {
 		switch (message.command) {
 			case 'append':
 				createCell(message.id, message.type, message.content);
+				window.scrollTo({ top:document.body.scrollHeight, behavior: 'smooth', })
 				return;
 			case 'export':
 				Export(message.file);
