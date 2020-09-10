@@ -1,5 +1,7 @@
 # fsharp-interactive-datascience
 
+> **This extension requires F#5**
+
 [fsharp-interactive-datascience](https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience) is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
 
 ![demo](demo.gif)
@@ -31,7 +33,7 @@ Locate where fsharp-interactive-datascience extension is installed:
 * **macOS** ```~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*```
 * **Linux** ```~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*```
 
-And edit VSCode ```settings.json```:
+Edit VSCode ```settings.json``` in the current workspace:
 
 ```json
 {
@@ -41,6 +43,11 @@ And edit VSCode ```settings.json```:
     ]
 }
 ```
+
+Open the notebook panel with the command Ctrl+Alt+P > "**F# Notebook+DataScience: Open Panel**"
+
+You can now start coding in an *.fsx file.
+> Tip: Alt+Enter will execute the current line
 
 ## Usage
 
