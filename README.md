@@ -80,4 +80,6 @@ fsi.AddPrinter(fun (data : YourType) ->
     |> SVG // or HTML or Markdown or Text
     |> printerNotebook
 )
+
+let x = new YourType() // this will automatically print x in the notebook panel
 ```
