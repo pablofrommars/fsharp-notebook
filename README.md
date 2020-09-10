@@ -27,9 +27,9 @@
 Install F# 5: https://dotnet.microsoft.com/download/dotnet/5.0
 
 Locate where fsharp-interactive-datascience extension is installed:
-* **Windows** ```%USERPROFILE%\.vscode\extensions\pablobelin.fsharp-interactive-datascience-*```
-* **macOS** ```~/.vscode/extensions/pablobelin.fsharp-interactive-datascience-*```
-* **Linux** ```~/.vscode/extensions/pablobelin.fsharp-interactive-datascience-*```
+* **Windows** ```%USERPROFILE%\.vscode\extensions\andriniaina.fsharp-interactive-datascience-*```
+* **macOS** ```~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*```
+* **Linux** ```~/.vscode/extensions/andriniaina.fsharp-interactive-datascience-*```
 
 And edit VSCode ```settings.json```:
 
