@@ -63,6 +63,20 @@ Notebook.Markdown """
 // display primitive values
 Notebook.Text (1+1)
 
+// display dataframes
+#r "nuget: Microsoft.Data.Analysis"
+open Microsoft.Data.Analysis
+let locations, alcohol =
+    consumption.Rows
+        |> Seq.map (fun row -> row.Location, row.Alcohol)
+        |> List.ofSeq
+        |> List.unzip
+let df = new DataFrame(
+    new StringDataFrameColumn("location", locations),
+    new PrimitiveDataFrameColumn<decimal>("consumption", alcohol)
+)
+Notebook.DataFrame df
+
 // display plotly chart
 open XPlot.Plotly
 open FSharp.Data
