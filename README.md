@@ -74,6 +74,7 @@ Notebook.Plotly map
 ### Custom printers
 
 ```fsharp
+open Notebook
 fsi.AddPrinter(fun (data : YourType) ->
     ... // Format to string
     |> SVG // or HTML or Markdown or Text
