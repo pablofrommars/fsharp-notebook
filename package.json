@@ -66,17 +66,17 @@
 			{
 				"command": "notebookPanel.open",
 				"title": "Open Panel",
-				"category": "F# Notebook+Plotly"
+				"category": "F# Notebook+DataScience"
 			},
 			{
 				"command": "notebookPanel.export",
 				"title": "Export Panel",
-				"category": "F# Notebook+Plotly"
+				"category": "F# Notebook+DataScience"
 			},
 			{
 				"command": "notebookPanel.clear",
 				"title": "Clear Panel",
-				"category": "F# Notebook+Plotly"
+				"category": "F# Notebook+DataScience"
 			}
 		]
 	},

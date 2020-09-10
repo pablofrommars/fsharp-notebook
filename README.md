@@ -65,11 +65,9 @@ type AlcoholConsumption = CsvProvider<"https://raw.githubusercontent.com/plotly/
 let consumption = AlcoholConsumption.Load("https://raw.githubusercontent.com/plotly/datasets/master/2010_alcohol_consumption_by_country.csv")
 let locations = consumption.Rows |> Seq.map (fun r -> r.Location)
 let z = consumption.Rows |> Seq.map (fun r -> r.Alcohol)
-
 let map =
     Chart.Plot([ Choropleth(locations = locations, locationmode = "country names", z = z, autocolorscale = true) ])
     |> Chart.WithLayout(Layout(title = "Alcohol consumption", width = 700.0, margin = margin, geo = Geo(projection = Projection(``type`` = "mercator"))))
-
 Notebook.Plotly map
 ```
 
