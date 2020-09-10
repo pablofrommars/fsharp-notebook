@@ -6,6 +6,8 @@
 
 ![demo](demo.gif)
 
+![map](demo2.png)
+
 ## Built-in features
 
 * Register "rich output" printers to FSI
