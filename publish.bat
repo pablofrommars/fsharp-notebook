@@ -1,2 +1,2 @@
-vsce package
-vsce publish
+call vsce package
+call vsce publish
