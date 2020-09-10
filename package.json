@@ -1,13 +1,13 @@
 {
-	"name": "fsharp-notebook",
-	"displayName": "fsharp-notebook",
-	"description": "Data Science Notebook for F# interactive",
-	"publisher": "PabloBelin",
+	"name": "fsharp-interactive-datascience",
+	"displayName": "F# Notebook+Plotly",
+	"description": "Data Science Notebook for F# interactive with plotly",
+	"publisher": "andri",
 	"version": "1.0.2",
 	"license": "MIT",
-	"author": { 
-		"name": "Pablo Belin",
-		"email": "pablo.belin@gmail.com"
+	"author": {
+		"name": "Andri Rakotomalala",
+		"email": "andriniaina@gmail.com"
 	},
 	"icon": "media/img/logo.png",
 	"markdown": "github",
@@ -15,14 +15,15 @@
 		"vscode": "^1.43.0"
 	},
 	"categories": [
-		"Other"
+		"Data Science"
 	],
 	"keywords": [
 		"F#",
 		"fsharp",
 		"Visualization",
 		"Data science",
-		"Notebooks"
+		"Notebooks",
+		"Plotly"
 	],
 	"activationEvents": [
 		"onCommand:notebookPanel.open",
@@ -31,51 +32,51 @@
 		"onWebviewPanel:notebookPanel"
 	],
 	"bugs": {
-		"url": "https://github.com/pablofrommars/fsharp-notebook/issues"
+		"url": "https://github.com/andriniaina/fsharp-notebook/issues"
 	},
-	"homepage": "https://pablofrommars.github.io/",
+	"homepage": "https://github.com/andriniaina/fsharp-notebook",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/pablofrommars/fsharp-notebook.git"
+		"url": "https://github.com/andriniaina/fsharp-notebook.git"
 	},
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "FSharpNotebook",
+			"title": "FSharpNotebookPlotly",
 			"properties": {
-			  "fsharpnotebook.styles": {
-				"type": "array",
-				"items": {
-					"type": "string"
+				"fsharpnotebook.styles": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [],
+					"description": "A list of CSS style sheets to use in notebooks"
 				},
-				"default": [],
-				"description": "A list of CSS style sheets to use in notebooks"
-			  },
-			  "fsharpnotebook.exportStyles": {
-				"type": "array",
-				"items": {
-					"type": "string"
-				},
-				"default": [],
-				"description": "A list of CSS style sheets to use when exporting notebooks"
-			  }
+				"fsharpnotebook.exportStyles": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [],
+					"description": "A list of CSS style sheets to use when exporting notebooks"
+				}
 			}
 		},
 		"commands": [
 			{
 				"command": "notebookPanel.open",
 				"title": "Open Panel",
-				"category": "F# Notebook"
+				"category": "F# Notebook+Plotly"
 			},
 			{
 				"command": "notebookPanel.export",
 				"title": "Export Panel",
-				"category": "F# Notebook"
+				"category": "F# Notebook+Plotly"
 			},
 			{
 				"command": "notebookPanel.clear",
 				"title": "Clear Panel",
-				"category": "F# Notebook"
+				"category": "F# Notebook+Plotly"
 			}
 		]
 	},

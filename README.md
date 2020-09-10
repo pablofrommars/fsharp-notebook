@@ -25,10 +25,10 @@
 
 ## Configure [Ionide-fsharp](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
 
-Locate where fsharp-notebook extension is installed:
-* **Windows** ```%USERPROFILE%\.vscode\extensions\pablobelin.fsharp-notebook-*```
-* **macOS** ```~/.vscode/extensions/pablobelin.fsharp-notebook-*```
-* **Linux** ```~/.vscode/extensions/pablobelin.fsharp-notebook-*```
+Locate where fsharp-interactive-datascience extension is installed:
+* **Windows** ```%USERPROFILE%\.vscode\extensions\pablobelin.fsharp-interactive-datascience-*```
+* **macOS** ```~/.vscode/extensions/pablobelin.fsharp-interactive-datascience-*```
+* **Linux** ```~/.vscode/extensions/pablobelin.fsharp-interactive-datascience-*```
 
 And edit VSCode ```settings.json```:
 
@@ -41,6 +41,7 @@ And edit VSCode ```settings.json```:
 ### Basic Example
 
 ```fsharp
+// Ctrl+Alt+P : F# Notebook: Open Panel
 open Notebook
 
 let md = Markdown """
