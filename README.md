@@ -2,6 +2,8 @@
 
 > **This extension requires F#5**
 
+> F#5 is still in preview and has a [nasty bug that freezes autocompletion](https://github.com/dotnet/fsharp/issues/8757)
+
 [fsharp-interactive-datascience](https://marketplace.visualstudio.com/items?itemName=andriniaina.fsharp-interactive-datascience) is a lightweight visualization tool to assist during data exploration and prototyping. In combination with [ionide](https://ionide.io), VSCode becomes a very capable F# IDE for data science.
 
 ![demo](demo.gif)
