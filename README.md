@@ -108,3 +108,7 @@ fsi.AddPrinter(fun (data : YourType) ->
 
 let x = new YourType() // this will automatically print x in the notebook panel
 ```
+
+
+# Thanks
+Pablo Belin was the [first author](https://github.com/pablofrommars/fsharp-notebook) of this extension
